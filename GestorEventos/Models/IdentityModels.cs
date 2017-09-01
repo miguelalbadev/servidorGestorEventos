@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System;
 
 namespace GestorEventos.Models
 {
@@ -20,6 +21,8 @@ namespace GestorEventos.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        [ThreadStatic]
+        public static ApplicationDbContext applicationDbContext;
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -29,5 +32,9 @@ namespace GestorEventos.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<GestorEventos.Models.Evento> Eventoes { get; set; }
+
+        public System.Data.Entity.DbSet<GestorEventos.Models.TipoEvento> TipoEventoes { get; set; }
     }
 }

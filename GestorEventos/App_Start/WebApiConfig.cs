@@ -17,6 +17,7 @@ namespace GestorEventos
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
+            config.EnableCors();
             // Rutas de Web API
             config.MapHttpAttributeRoutes();
 
