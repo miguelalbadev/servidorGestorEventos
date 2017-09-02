@@ -10,7 +10,7 @@ namespace GestorEventos.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(GestorEventos.Models.ApplicationDbContext context)
