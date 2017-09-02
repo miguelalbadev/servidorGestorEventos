@@ -4,6 +4,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
+using System.Data.Entity;
+using GestorEventos.Migrations;
 
 namespace GestorEventos.Models
 {
@@ -26,6 +28,7 @@ namespace GestorEventos.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext,Configuration>());
         }
         
         public static ApplicationDbContext Create()
@@ -36,5 +39,9 @@ namespace GestorEventos.Models
         public System.Data.Entity.DbSet<GestorEventos.Models.Evento> Eventoes { get; set; }
 
         public System.Data.Entity.DbSet<GestorEventos.Models.TipoEvento> TipoEventoes { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
