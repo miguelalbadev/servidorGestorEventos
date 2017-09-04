@@ -28,6 +28,11 @@ namespace GestorEventos
                 new InterceptionBehavior<DbInterceptor>());
             container.RegisterType<ITipoEventosRepository, TipoEventosRepository>();
 
+            container.RegisterType<IEventosService, EventosService>(
+                new Interceptor<InterfaceInterceptor>(),
+                new InterceptionBehavior<DbInterceptor>());
+            container.RegisterType<IEventosRepository, EventosRepository>();
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
 

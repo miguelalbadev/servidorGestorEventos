@@ -289,13 +289,13 @@
     <Compile Include="Models\TipoEvento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
-    <Compile Include="Repository\EventoRepository.cs" />
-    <Compile Include="Repository\IEventoRepository.cs" />
+    <Compile Include="Repository\EventosRepository.cs" />
+    <Compile Include="Repository\IEventosRepository.cs" />
     <Compile Include="Repository\ITipoEventosRepository.cs" />
     <Compile Include="Repository\TipoEventosRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
-    <Compile Include="Service\EventoService.cs" />
-    <Compile Include="Service\IEventoService.cs" />
+    <Compile Include="Service\EventosService.cs" />
+    <Compile Include="Service\IEventosService.cs" />
     <Compile Include="Service\ITipoEventosService.cs" />
     <Compile Include="Service\TipoEventosService.cs" />
     <Compile Include="Startup.cs" />

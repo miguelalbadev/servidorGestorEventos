@@ -9,9 +9,13 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GestorEventos.Models;
+using GestorEventos.Service;
+using GestorEventos.Excepciones;
+using System.Web.Http.Cors;
 
 namespace GestorEventos.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EventoController : ApiController
     {
         private IEventosService eventosService;
