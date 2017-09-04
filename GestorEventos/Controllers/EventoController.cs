@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using GestorEventos.Models;
+using GestorEventos.Service;
+using GestorEventos.Excepciones;
 
 namespace GestorEventos.Controllers
 {
