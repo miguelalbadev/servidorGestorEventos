@@ -11,10 +11,7 @@ using System.Web.Http.Description;
 using GestorEventos.Models;
 using GestorEventos.Service;
 using GestorEventos.Excepciones;
-<<<<<<< HEAD
 using System.Web.Http.Cors;
-=======
->>>>>>> 020dc725f9831bb7894284fb175fa2d3a2cd78cc
 
 namespace GestorEventos.Controllers
 {

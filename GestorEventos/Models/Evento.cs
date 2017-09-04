@@ -9,9 +9,10 @@ namespace GestorEventos.Models {
         [Key]
         public long Id { get; set; }
         public DateTime Fecha { get; set; }
-        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         public string Tipo { get; set; }
         public string Origen { get; set; }
+        public string Destino { get; set; }
         public string Prioridad { get; set; }
     }
 }
