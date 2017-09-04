@@ -14,19 +14,23 @@ namespace GestorEventos.Controllers
 {
     public class EventoController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private IEventosService eventosService;
+
+        public EventoController(IEventosService eventosService) {
+            this.eventosService = eventosService;
+        }
 
         // GET: api/Evento
-        public IQueryable<Evento> GetEvento()
+        public IQueryable<Evento> GetEventos()
         {
-            return db.Evento;
+            return eventosService.ReadAll();
         }
 
         // GET: api/Evento/5
         [ResponseType(typeof(Evento))]
         public IHttpActionResult GetEvento(long id)
         {
-            Evento evento = db.Evento.Find(id);
+            Evento evento = eventosService.Read(id);
             if (evento == null)
             {
                 return NotFound();
@@ -49,22 +53,14 @@ namespace GestorEventos.Controllers
                 return BadRequest();
             }
 
-            db.Entry(evento).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                eventosService.Update(id, evento);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EventoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
+
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -79,8 +75,7 @@ namespace GestorEventos.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Evento.Add(evento);
-            db.SaveChanges();
+            evento = eventosService.Create(evento);
 
             return CreatedAtRoute("DefaultApi", new { id = evento.Id }, evento);
         }
@@ -89,30 +84,14 @@ namespace GestorEventos.Controllers
         [ResponseType(typeof(Evento))]
         public IHttpActionResult DeleteEvento(long id)
         {
-            Evento evento = db.Evento.Find(id);
-            if (evento == null)
-            {
+            Evento evento;
+            try {
+                evento = eventosService.Delete(id);
+            }
+            catch(NoEncontradoException e) {
                 return NotFound();
             }
-
-            db.Evento.Remove(evento);
-            db.SaveChanges();
-
             return Ok(evento);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool EventoExists(long id)
-        {
-            return db.Evento.Count(e => e.Id == id) > 0;
         }
     }
 }
