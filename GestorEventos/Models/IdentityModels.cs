@@ -36,9 +36,9 @@ namespace GestorEventos.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<GestorEventos.Models.Evento> Eventoes { get; set; }
+        public System.Data.Entity.DbSet<GestorEventos.Models.Evento> Eventos { get; set; }
 
-        public System.Data.Entity.DbSet<GestorEventos.Models.TipoEvento> TipoEventoes { get; set; }
+        public System.Data.Entity.DbSet<GestorEventos.Models.TipoEvento> TipoEventos { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
 
             base.OnModelCreating(modelBuilder);

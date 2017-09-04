@@ -23,7 +23,7 @@ namespace GestorEventos.Controllers
         }
 
         // GET: api/TipoEvento
-        public IQueryable<TipoEvento> GetTipoEventoes()
+        public IQueryable<TipoEvento> GetTipoEventos()
         {
             return tipoEventosService.ReadAll();
         }

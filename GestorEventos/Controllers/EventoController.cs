@@ -12,21 +12,21 @@ using GestorEventos.Models;
 
 namespace GestorEventos.Controllers
 {
-    public class EventoesController : ApiController
+    public class EventoController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Eventoes
-        public IQueryable<Evento> GetEventoes()
+        // GET: api/Evento
+        public IQueryable<Evento> GetEvento()
         {
-            return db.Eventoes;
+            return db.Evento;
         }
 
-        // GET: api/Eventoes/5
+        // GET: api/Evento/5
         [ResponseType(typeof(Evento))]
         public IHttpActionResult GetEvento(long id)
         {
-            Evento evento = db.Eventoes.Find(id);
+            Evento evento = db.Evento.Find(id);
             if (evento == null)
             {
                 return NotFound();
@@ -35,7 +35,7 @@ namespace GestorEventos.Controllers
             return Ok(evento);
         }
 
-        // PUT: api/Eventoes/5
+        // PUT: api/Evento/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutEvento(long id, Evento evento)
         {
@@ -70,7 +70,7 @@ namespace GestorEventos.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Eventoes
+        // POST: api/Evento
         [ResponseType(typeof(Evento))]
         public IHttpActionResult PostEvento(Evento evento)
         {
@@ -79,23 +79,23 @@ namespace GestorEventos.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Eventoes.Add(evento);
+            db.Evento.Add(evento);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = evento.Id }, evento);
         }
 
-        // DELETE: api/Eventoes/5
+        // DELETE: api/Evento/5
         [ResponseType(typeof(Evento))]
         public IHttpActionResult DeleteEvento(long id)
         {
-            Evento evento = db.Eventoes.Find(id);
+            Evento evento = db.Evento.Find(id);
             if (evento == null)
             {
                 return NotFound();
             }
 
-            db.Eventoes.Remove(evento);
+            db.Evento.Remove(evento);
             db.SaveChanges();
 
             return Ok(evento);
@@ -112,7 +112,7 @@ namespace GestorEventos.Controllers
 
         private bool EventoExists(long id)
         {
-            return db.Eventoes.Count(e => e.Id == id) > 0;
+            return db.Evento.Count(e => e.Id == id) > 0;
         }
     }
 }
